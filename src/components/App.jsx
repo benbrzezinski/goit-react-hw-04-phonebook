@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 import Section from './Section/Section';
 import Form from './Form/Form';
 import Contacts from './Contacts/Contacts';
@@ -21,10 +23,13 @@ const App = () => {
   };
 
   return (
-    <Section>
-      <Form contacts={contacts} addContact={addContact} />
-      <Contacts contacts={contacts} deleteContact={deleteContact} />
-    </Section>
+    <>
+      <Section>
+        <Form contacts={contacts} addContact={addContact} />
+        <Contacts contacts={contacts} deleteContact={deleteContact} />
+      </Section>
+      <ToastContainer position="top-left" autoClose={3000} theme="colored" />
+    </>
   );
 };
 
