@@ -1,0 +1,13 @@
+.section {
+  margin: 50px;
+}
+
+@media screen and (max-width: 400px) {
+  .section {
+    margin: 0;
+  }
+}
+
+.title {
+  margin-bottom: 20px;
+}
