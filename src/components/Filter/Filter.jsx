@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import css from './Filter.module.css';
 
-const Filter = ({ text = 'Find contacts by name', filter, setFilter }) => (
+const Filter = ({ text = 'Find contacts by name', filter, handleChange }) => (
   <>
     <p className={css.text}>{text}</p>
     <input
@@ -9,7 +9,7 @@ const Filter = ({ text = 'Find contacts by name', filter, setFilter }) => (
       type="text"
       name="filter"
       value={filter}
-      onChange={setFilter}
+      onChange={handleChange}
     />
   </>
 );
@@ -17,7 +17,7 @@ const Filter = ({ text = 'Find contacts by name', filter, setFilter }) => (
 Filter.propTypes = {
   text: PropTypes.string,
   filter: PropTypes.string.isRequired,
-  setFilter: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default Filter;

@@ -1,43 +1,31 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import Section from './Section/Section';
 import Form from './Form/Form';
 import Contacts from './Contacts/Contacts';
 import Storage from 'utils/localStorage';
 
-class App extends Component {
-  state = {
-    contacts: Storage.getContacts() ?? [],
+const App = () => {
+  const [contacts, setContacts] = useState(Storage.getContacts() ?? []);
+
+  useEffect(() => Storage.setContacts(contacts), [contacts]);
+
+  const addContact = newContact => {
+    setContacts([...contacts, newContact]);
   };
 
-  componentDidUpdate() {
-    Storage.setContacts(this.state.contacts);
-  }
-
-  setContact = newContact => {
-    this.setState(({ contacts }) => ({
-      contacts: [...contacts, newContact],
-    }));
-  };
-
-  deleteContact = e => {
+  const deleteContact = e => {
     const deletedId = e.currentTarget.dataset.id;
+    const filteredContacts = contacts.filter(({ id }) => id !== deletedId);
 
-    this.setState(({ contacts }) => {
-      const filteredContacts = contacts.filter(({ id }) => id !== deletedId);
-      return { contacts: filteredContacts };
-    });
+    setContacts(filteredContacts);
   };
 
-  render() {
-    const { contacts } = this.state;
-
-    return (
-      <Section>
-        <Form contacts={contacts} setContact={this.setContact} />
-        <Contacts contacts={contacts} deleteContact={this.deleteContact} />
-      </Section>
-    );
-  }
-}
+  return (
+    <Section>
+      <Form contacts={contacts} addContact={addContact} />
+      <Contacts contacts={contacts} deleteContact={deleteContact} />
+    </Section>
+  );
+};
 
 export default App;
