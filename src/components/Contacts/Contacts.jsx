@@ -25,14 +25,10 @@ const Contacts = ({ title = 'Contacts', contacts, deleteContact }) => {
         <>
           <Filter filter={filter} handleChange={handleChange} />
           <ul className={css.contacts}>
-            {!filter.trim() ? (
-              <ContactsItem contacts={contacts} deleteContact={deleteContact} />
-            ) : (
-              <ContactsItem
-                contacts={getFilteredContacts(contacts, filter)}
-                deleteContact={deleteContact}
-              />
-            )}
+            <ContactsItem
+              contacts={getFilteredContacts(contacts, filter)}
+              deleteContact={deleteContact}
+            />
           </ul>
         </>
       ) : (
