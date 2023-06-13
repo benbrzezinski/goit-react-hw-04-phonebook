@@ -14,9 +14,7 @@ const Form = ({ contacts, addContact }) => {
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
-
-    if (name === 'name') setValues({ ...values, name: value });
-    if (name === 'number') setValues({ ...values, number: value });
+    setValues({ ...values, [name]: value });
   };
 
   const handleSubmit = e => {
