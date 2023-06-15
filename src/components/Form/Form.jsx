@@ -14,7 +14,7 @@ const Form = ({ contacts, addContact }) => {
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
-    setValues({ ...values, [name]: value });
+    setValues(v => ({ ...v, [name]: value }));
   };
 
   const handleSubmit = e => {
